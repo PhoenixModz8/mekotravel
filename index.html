@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+<!-- ẢNH TRONG FILE NÀY: image/hero-index.jpg · image/hero-index.jpg (cùng thư mục với file này). Ảnh gốc: IMG_1692.jpeg -->
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Traces Of The Mekong</title>
+<script>document.documentElement.classList.add('js')</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&amp;family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['"Noto Serif"', 'Georgia', 'serif'],
+      },
+    },
+  },
+};
+  </script>
+<style>
+/* Mekong Travels / Mekong – styles dùng chung cho các trang */
+/* Ghi chú: Tailwind được nạp qua CDN trong HTML; file này chứa phần CSS riêng. */
+
+html { scrollbar-gutter: stable; }
+
+/* ẢNH NỀN KHU HERO (.hero-bg) -> image/hero-index.jpg  (file gốc: IMG_1692.jpeg). Để cùng thư mục với file này. Có gradient xanh làm dự phòng. */
+    .hero-bg {
+      background-color: #14532d;
+      background-image:
+        url("image/hero-index.jpg"),
+        linear-gradient(135deg, #14532d, #166534 50%, #052e16);
+      background-size: cover;
+      background-position: center;
+    }
+
+/* Scroll reveal: fade-in + blur-in khi cuộn tới (chỉ ẩn trước khi hiện nếu JS chạy) */
+    @keyframes revealIn {
+      from { opacity: 0; filter: blur(12px); transform: translateY(24px); }
+      to   { opacity: 1; filter: blur(0);    transform: none; }
+    }
+
+.js .reveal:not(.is-visible) { opacity: 0; filter: blur(12px); transform: translateY(24px); }
+
+.reveal.is-visible { animation: revealIn .9s cubic-bezier(.2,.7,.2,1) var(--d, 0ms) backwards; }
+
+@media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal:not(.is-visible) { opacity: 1 !important; filter: none !important; transform: none !important; animation: none !important; }
+    }
+
+.copy-tip { opacity: 0; transform: translateY(4px); transition: opacity .15s, transform .15s; }
+
+.copy-tip.show { opacity: 1; transform: none; }
+
+/* ===== Spotlight carousel (section 2, nền trắng) ===== */
+    #spotlight { background-color: #ffffff; }
+
+#spotlight .sp-stage { height: 360px; }
+
+#spotlight .sp-card {
+      position: absolute; left: 50%; top: 50%;
+      width: 230px; height: 320px; margin: -160px 0 0 -115px;
+      border-radius: 20px; overflow: hidden; cursor: pointer;
+      box-shadow: 0 20px 45px rgba(15,23,42,.25);
+      transition: transform .6s cubic-bezier(.2,.8,.2,1), filter .6s ease, opacity .6s ease;
+      --off: 190px;
+    }
+
+#spotlight .sp-card[data-pos="0"]      { transform: translateX(0) scale(1);                       filter: blur(0) brightness(1);    opacity: 1; z-index: 3; }
+
+#spotlight .sp-card[data-pos="-1"]     { transform: translateX(calc(var(--off) * -1)) scale(.8);  filter: blur(0) brightness(.45); opacity: 1; z-index: 2; }
+
+#spotlight .sp-card[data-pos="1"]      { transform: translateX(var(--off)) scale(.8);             filter: blur(0) brightness(.45); opacity: 1; z-index: 2; }
+
+#spotlight .sp-card[data-pos="hidden"] { transform: scale(.6); filter: blur(14px); opacity: 0; visibility: hidden; z-index: 1; }
+
+#spotlight .sp-card .sp-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.6), rgba(0,0,0,0) 60%); }
+
+#spotlight .sp-card .sp-label { position: absolute; left: 16px; right: 16px; bottom: 16px; }
+
+@media (max-width: 640px) {
+      #spotlight .sp-card { --off: 120px; width: 190px; height: 270px; margin: -135px 0 0 -95px; }
+    }
+
+#spotlight .sp-info { transition: opacity .3s ease, filter .3s ease, transform .3s ease; }
+
+#spotlight .sp-info.sp-out { opacity: 0; filter: blur(6px); transform: translateY(8px); }
+
+#spotlight .sp-layer { transition: opacity .9s ease; }
+
+#spotlight .sp-arrow {
+      display: flex; height: 44px; width: 44px; align-items: center; justify-content: center;
+      border-radius: 9999px; border: none; color: #0b1a33;
+      background: #ffffff; box-shadow: 0 6px 18px rgba(0,0,0,.25); transition: background-color .25s, color .25s;
+    }
+
+#spotlight .sp-arrow:hover { background: #0b1a33; color: #ffffff; }
+
+#spotlight .sp-dot { height: 8px; width: 8px; border-radius: 9999px; background: rgba(255,255,255,.5); transition: width .3s, background-color .3s; }
+
+#spotlight .sp-dot.active { width: 24px; background: #ffffff; }
+
+@media (prefers-reduced-motion: reduce) { #spotlight .sp-card, #spotlight .sp-info { transition: none; } }
+
+:focus-visible { outline: 2px solid #7dd3fc; outline-offset: 2px; }
+
+/* Ảnh banner: thay URL bằng ảnh bãi biển/hàng cọ của bạn */
+    .banner-bg {
+      background-color: #0e7490;
+      background-image:
+        url("image/hero-index.jpg"),
+        linear-gradient(135deg, #0e7490, #0369a1);
+      background-size: cover;
+      background-position: center;
+    }
+
+.filter-btn { white-space: nowrap; border-radius: 9999px; padding: .5rem 1rem; font-size: .875rem; font-weight: 500;
+      color: #fff; background: transparent; transition: background-color .25s, color .25s; }
+
+.filter-btn:hover { background: rgba(255,255,255,.15); }
+
+.filter-btn[aria-selected="true"] { background: #fff; color: #0b1a33; }
+
+@media (min-width: 640px) { .filter-btn { padding: .5rem 1.5rem; } }
+
+#modal { visibility: hidden; opacity: 0; transition: opacity .25s ease, visibility .25s; }
+
+#modal.open { visibility: visible; opacity: 1; }
+
+#modal .panel { transform: translateX(100%); transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+
+#modal.open .panel { transform: none; }
+
+/* Khung modal: nằm cố định, dạt sang phải */
+    #modal { position: fixed; inset: 0; display: flex; justify-content: flex-end; }
+
+/* Drawer width: full on phones, ~1/3 of the screen on desktop */
+    #modal .panel { width: 100%; max-width: none; height: calc(100% - 24px); margin: 12px; }
+
+#modal .info-box { border: 1px solid #ffffff; border-radius: 20px; background: rgba(255,255,255,.25); padding: 16px 18px; }
+
+/* Ảnh nền: rõ ở trên, tối dần xuống dưới */
+    #modal .modal-shade { background: linear-gradient(to bottom, rgba(11,26,51,.05) 0%, rgba(11,26,51,.35) 30%, rgba(11,26,51,.85) 62%, rgba(11,26,51,.97) 100%); }
+
+#modal .modal-spacer { height: 42%; min-height: 240px; }
+
+#modal #modal-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+#modal .modal-scroll::-webkit-scrollbar { width: 6px; }
+
+#modal .modal-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,.25); border-radius: 9999px; }
+
+@media (min-width: 640px) { #modal .panel { width: calc(420px - 24px); } }
+
+@media (min-width: 1024px) { #modal .panel { width: calc(33.333vw - 24px); min-width: 356px; max-width: 536px; } }
+
+@media (prefers-reduced-motion: reduce) { #modal, #modal .panel { transition: none; } }
+
+:focus-visible { outline: 2px solid #38bdf8; outline-offset: 2px; }
+
+/* Banner: ảnh hero, phủ tối nhẹ */
+    .banner-bg { background-color: #0e7490; background-image: url("image/hero-index.jpg"), linear-gradient(135deg, #0e7490, #0369a1); background-size: cover; background-position: center; }
+
+/* ===== Language switch (EN / VI) ===== */
+    html[lang="en"] [data-lang="vi"] { display: none !important; }
+
+html[lang="vi"] [data-lang="en"] { display: none !important; }
+
+.flag-btn { opacity: .55; transition: opacity .2s, box-shadow .2s; border-radius: 3px; overflow: hidden; }
+
+.flag-btn:hover { opacity: 1; }
+
+html[lang="en"] #flag-en, html[lang="vi"] #flag-vi { opacity: 1; box-shadow: 0 0 0 2px rgba(255,255,255,.7); }
+      /* Navbar luôn hiển thị khi cuộn, nền xanh navy */
+    header.site-nav { position: sticky; top: 0; z-index: 30; background: #0b1a33; transition: box-shadow .3s ease; }
+    header.site-nav.scrolled { background: linear-gradient(to bottom, rgba(11,26,51,.85) 0%, rgba(11,26,51,.45) 70%, rgba(11,26,51,0) 100%); }
+</style>
+</head>
+<body class="font-sans bg-slate-900 text-white antialiased">
+<!-- NAVBAR -->
+<header class="site-nav sticky top-0 z-30 w-full bg-[#0b1a33] text-white">
+<nav class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-y-2 px-4 py-3 sm:px-6 lg:px-8">
+<a aria-label="Mekong Travel" class="flex shrink-0 items-center gap-3 xl:flex-1 xl:basis-0" href="index.html" title="Home"><img alt="Mekong Travel logo" class="h-14 w-14 object-contain sm:h-16 sm:w-16 lg:h-[72px] lg:w-[72px]" loading="eager" src="image/logo-mekong-travel.png"/><span class="text-lg font-extrabold uppercase tracking-wide text-white sm:text-xl lg:text-2xl">Mekong Travel</span></a>
+<ul class="order-last flex w-full items-center justify-center gap-1 rounded-full border border-white/25 bg-white/10 p-2 text-sm font-medium md:order-none md:w-auto md:gap-2 md:p-2.5 md:justify-center md:text-[15px]">
+<li><a aria-current="page" class="rounded-full border border-white/20 bg-white/15 px-5 py-2 text-white" href="index.html">Home</a></li>
+<li><a class="rounded-full px-5 py-2 text-white/85 transition hover:bg-white/10 hover:text-white" href="information_en.html">Information</a></li>
+<li><a class="rounded-full px-5 py-2 text-white/85 transition hover:bg-white/10 hover:text-white" href="destinations_en.html">Destinations</a></li>
+<li><a class="rounded-full px-5 py-2 text-white/85 transition hover:bg-white/10 hover:text-white" href="pricing_en.html">Pricing</a></li>
+</ul>
+<div class="flex shrink-0 items-center gap-3 xl:flex-1 xl:basis-0 xl:justify-end">
+<a aria-current="true" aria-label="English" class="flag-btn ring-1 ring-white/30" href="index.html" id="flag-en" title="English" type="button"><svg aria-hidden="true" class="block h-5 w-7" viewbox="0 0 28 20"><rect fill="#fff" height="20" width="28"></rect><g fill="#b22234"><rect height="1.540" width="28" y="0"></rect><rect height="1.540" width="28" y="3.080"></rect><rect height="1.540" width="28" y="6.150"></rect><rect height="1.540" width="28" y="9.230"></rect><rect height="1.540" width="28" y="12.310"></rect><rect height="1.540" width="28" y="15.380"></rect><rect height="1.540" width="28" y="18.460"></rect></g><rect fill="#3c3b6e" height="10.770" width="12"></rect><g fill="#fff"><circle cx="2" cy="1.800" r=".5"></circle><circle cx="4.700" cy="1.800" r=".5"></circle><circle cx="7.300" cy="1.800" r=".5"></circle><circle cx="10" cy="1.800" r=".5"></circle><circle cx="3.350" cy="3.900" r=".5"></circle><circle cx="6" cy="3.900" r=".5"></circle><circle cx="8.650" cy="3.900" r=".5"></circle><circle cx="2" cy="6" r=".5"></circle><circle cx="4.700" cy="6" r=".5"></circle><circle cx="7.300" cy="6" r=".5"></circle><circle cx="10" cy="6" r=".5"></circle><circle cx="3.350" cy="8.100" r=".5"></circle><circle cx="6" cy="8.100" r=".5"></circle><circle cx="8.650" cy="8.100" r=".5"></circle></g></svg></a>
+<a aria-current="" aria-label="Tiếng Việt" class="flag-btn ring-1 ring-white/30" href="homepage_vi.html" id="flag-vi" title="Tiếng Việt" type="button"><svg aria-hidden="true" class="block h-5 w-7" viewbox="0 0 28 20"><rect fill="#da251d" height="20" width="28"></rect><polygon fill="#ffcd00" points="14,4 15.760,8.480 20.560,8.760 16.840,11.780 18.040,16.440 14,13.840 9.960,16.440 11.160,11.780 7.440,8.760 12.240,8.480"></polygon></svg></a>
+</div>
+</nav>
+</header>
+<!-- HERO + FEATURES (chung một ảnh nền) -->
+<div class="hero-bg relative flex min-h-[calc(100vh-56px)] flex-col">
+<!-- Overlay tối nhẹ -->
+<div class="absolute inset-0 bg-black/40"></div>
+<!-- Gradient đen từ dưới lên -->
+<div class="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/85 to-transparent"></div>
+<!-- Hero -->
+<section class="relative z-10 flex flex-1 flex-col items-center justify-center px-4 pb-12 pt-16 text-center sm:px-6">
+<h1 class="max-w-5xl text-4xl font-black uppercase leading-tight tracking-tight sm:text-6xl lg:text-7xl">
+Traces Of The Mekong
+</h1>
+<p class="mt-6 max-w-3xl text-base leading-relaxed text-white sm:text-lg">“Footprints” represents the journey and experiences of travelers.
+“The river region” represents the natural landscape, culture and daily life of Southwestern Vietnam.</p>
+<a class="mt-8 inline-block rounded-md border border-white bg-transparent px-8 py-3 text-sm font-medium uppercase tracking-wider text-white transition hover:bg-white hover:text-slate-900" href="destinations_en.html">
+        Start Your Journey
+      </a>
+</section>
+</div>
+<!-- WHY VISIT (đưa về homepage) -->
+<section class="bg-gray-800 px-4 py-16 sm:px-6 sm:py-24 lg:px-8" id="why-visit">
+<div class="mx-auto max-w-6xl">
+<div class="text-center">
+<h2 class="text-3xl font-bold text-white sm:text-4xl">WHY CHOOSE US?</h2>
+<p class="mx-auto mt-4 max-w-2xl text-base text-gray-300 sm:text-lg">text</p>
+</div>
+<div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
+<!-- Card 1 -->
+<article class="overflow-hidden rounded-2xl bg-white shadow-lg">
+<!-- Thay URL ảnh bằng ảnh của bạn: bãi biển cát trắng, hàng cọ, thuyền buồm -->
+<!-- ảnh thẻ: image/why-01-dich-vu.jpg --><img alt="" class="aspect-[4/5] w-full object-cover" onerror="this.onerror=null;this.removeAttribute('src');this.style.background='linear-gradient(135deg,#0b1a33,#0e7490)';" src="image/why-01-dich-vu.jpg"/>
+<div class="p-6 text-center sm:p-8">
+<h3 class="text-xl font-semibold text-gray-900">Quality Service &amp; A Complete Experience</h3>
+<p class="mt-3 text-sm leading-relaxed text-gray-500 sm:text-base">We are committed to top-quality service, with comfortable hotels, spacious modern tour vehicles and carefully selected meals full of local flavor. Our professional, dedicated guides look after you attentively down to the smallest detail, giving you a worry-free and thoroughly comfortable journey.</p>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="overflow-hidden rounded-2xl bg-white shadow-lg">
+<!-- Thay URL ảnh bằng ảnh lễ hội Ati-Atihan: trang phục đỏ/vàng/xanh, mặt bôi đen, mũ cầu kỳ -->
+<!-- ảnh thẻ: image/why-02-song-nuoc.jpg --><img alt="" class="aspect-[4/5] w-full object-cover" onerror="this.onerror=null;this.removeAttribute('src');this.style.background='linear-gradient(135deg,#0b1a33,#0e7490)';" src="image/why-02-song-nuoc.jpg"/>
+<div class="p-6 text-center sm:p-8">
+<h3 class="text-xl font-semibold text-gray-900">Leave the City Behind – Slow Down Among the Endless Waterways</h3>
+<p class="mt-3 text-sm leading-relaxed text-gray-500 sm:text-base">Set aside the hustle, worries and dust of the city and let yourself drift into the peaceful space of the Mekong Delta. Cycle leisurely under cool green coconut palms, wind through small, meandering canals, listen to the water lapping the banks and fully enjoy the fresh, rustic atmosphere.</p>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="overflow-hidden rounded-2xl bg-white shadow-lg">
+<!-- Thay URL ảnh bằng ảnh cầu tre xuyên rừng ngập mặn (Bakhawan Eco-Park) -->
+<!-- ảnh thẻ: image/why-03-le-hoi.jpg --><img alt="" class="aspect-[4/5] w-full object-cover" onerror="this.onerror=null;this.removeAttribute('src');this.style.background='linear-gradient(135deg,#0b1a33,#0e7490)';" src="image/why-03-le-hoi.jpg"/>
+<div class="p-6 text-center sm:p-8">
+<h3 class="text-xl font-semibold text-gray-900">Exclusive Highlights &amp; Lively Experiences</h3>
+<p class="mt-3 text-sm leading-relaxed text-gray-500 sm:text-base">Immerse yourself in the passionate, majestic atmosphere of the biggest traditional boat race of the year and witness sacred, colorful cultural rituals. Above all, receive the exclusive “Mekong Passport” – an experience passport you stamp yourself at each stage of the journey, turning every step into a one-of-a-kind mark.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- SPOTLIGHT (section 2, nền trắng) -->
+<!-- SPOTLIGHT CAROUSEL -->
+<section aria-label="Featured destinations" aria-roledescription="carousel" class="relative z-10 bg-white px-4 py-20 sm:px-6 lg:px-8" id="spotlight">
+<div class="sp-layer pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-400 to-teal-700" data-on="1" id="sp-bg-a"></div>
+<div class="sp-layer pointer-events-none absolute inset-0 bg-gradient-to-br from-emerald-400 to-teal-700" data-on="0" id="sp-bg-b" style="opacity:0"></div>
+<div class="pointer-events-none absolute inset-0" style="background: linear-gradient(to right, rgba(11,26,51,.45) 0%, rgba(11,26,51,.25) 35%, rgba(11,26,51,0) 60%);"></div>
+<div class="relative z-10 mx-auto mb-12 flex max-w-7xl items-center gap-6">
+<span class="h-px flex-1 bg-white/40"></span>
+<span class="text-xs font-semibold uppercase tracking-[0.35em] text-amber-300 sm:text-sm">Top Destinations</span>
+<span class="h-px flex-1 bg-white/40"></span>
+</div>
+<div class="relative z-10 mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-2">
+<!-- Thông tin địa điểm đang chọn -->
+<div class="sp-info text-left rounded-3xl border border-white/70 bg-white/15 p-7 shadow-xl backdrop-blur-md sm:p-9" id="sp-info">
+<div class="flex flex-wrap items-center gap-3">
+<span class="rounded-full border border-amber-200/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-amber-100" id="sp-cat"></span>
+<span class="text-sm text-gray-100" id="sp-loc"></span>
+</div>
+<h2 class="mt-5 font-serif text-4xl font-semibold text-white sm:text-6xl" id="sp-title"></h2>
+<p class="mt-3 font-serif text-xl italic text-gray-100" id="sp-quote"></p>
+<span class="mt-5 block h-px w-14 bg-amber-400"></span>
+<p class="mt-5 max-w-md leading-relaxed text-white" id="sp-desc"></p>
+<ul class="mt-6 flex flex-wrap gap-5 text-sm font-semibold text-white" id="sp-tags"></ul>
+</div>
+<!-- Sân khấu 3 thẻ + điều hướng -->
+<div class="relative">
+<div class="sp-stage relative mx-auto w-full" id="sp-stage"></div>
+<div class="mt-6 flex items-center justify-center gap-5">
+<button aria-label="Previous" class="sp-arrow" id="sp-prev" type="button">
+<svg aria-hidden="true" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M19 12H5m0 0 6-6m-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+<div class="flex items-center gap-2" id="sp-dots"></div>
+<button aria-label="Next" class="sp-arrow" id="sp-next" type="button">
+<svg aria-hidden="true" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14m0 0-6-6m6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<section class="relative z-10 bg-gray-50 px-4 py-20 sm:px-6 lg:px-8" id="summary-home">
+<div class="mx-auto max-w-6xl">
+<div class="text-center">
+<p class="text-xs font-bold uppercase tracking-[0.3em] text-amber-600">Before you book</p>
+<h2 class="mt-3 font-serif text-3xl font-semibold text-[#0b1a33] sm:text-4xl">IMPORTANT NOTES WHEN REGISTERING FOR THE TOUR</h2>
+<span class="mx-auto mt-5 block h-px w-20 bg-amber-400"></span>
+<p class="mx-auto mt-6 max-w-3xl leading-relaxed text-gray-600">To ensure a complete, safe trip with the best possible experience, please read the following notes carefully:</p>
+</div>
+<div class="mt-12 grid items-stretch gap-8 lg:grid-cols-2">
+<div class="rounded-3xl bg-white p-8 shadow-xl ring-1 ring-gray-200 sm:p-10">
+<h3 class="font-serif text-2xl font-semibold text-[#0b1a33]">1. Festival Participation Conditions &amp; Group Size</h3>
+<ul class="mt-6 space-y-5 text-sm sm:text-base"><li class="flex gap-4"><span class="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-amber-400"></span><span class="leading-relaxed text-gray-600"><strong class="font-semibold text-gray-900">Festival-season departure dates:</strong> Tour activities that include attending the festival are only held on departure dates that coincide with, or fit within, the official Ok Om Bok – Ngo Boat Racing Festival.</span></li><li class="flex gap-4"><span class="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-amber-400"></span><span class="leading-relaxed text-gray-600"><strong class="font-semibold text-gray-900">Festival experience commitment:</strong> If you choose departure dates outside the official festival period, the Ngo boat race / Ok Om Bok Festival viewing program will not take place and will be replaced by a suitable cultural experience activity.</span></li><li class="flex gap-4"><span class="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-amber-400"></span><span class="leading-relaxed text-gray-600"><strong class="font-semibold text-gray-900">Limited group size:</strong> To ensure service quality, deep experience space and the most attentive care, each tour accepts a maximum of 20 guests per trip.</span></li></ul>
+</div>
+<div class="rounded-3xl bg-[#0b1a33] p-8 text-white shadow-xl sm:p-10">
+<h3 class="font-serif text-2xl font-semibold text-white">2. Health Requirements &amp; Personal Information</h3>
+<ul class="mt-6 space-y-5 text-sm sm:text-base"><li class="flex gap-4"><span class="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-amber-400"></span><span class="leading-relaxed text-gray-200"><strong class="font-semibold text-white">Health declaration:</strong> Please proactively inform the organizers if you have a medical history of concern (cardiovascular, blood pressure, asthma, joints, etc.) or any difficulty with traveling, cycling or boating.</span></li><li class="flex gap-4"><span class="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-amber-400"></span><span class="leading-relaxed text-gray-200"><strong class="font-semibold text-white">Dietary requests &amp; allergies:</strong> Please inform us before the departure date if you are vegetarian, on a special diet or have food allergies (especially seafood, coconut milk, peanuts, etc.) so the organizers can arrange a suitable menu.</span></li><li class="flex gap-4"><span class="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-amber-400"></span><span class="leading-relaxed text-gray-200"><strong class="font-semibold text-white">Special guests:</strong> Children under 6, seniors (over 70) or pregnant women must be accompanied by a relative and confirm they are healthy enough to take part in river-travel activities.</span></li></ul>
+</div>
+</div>
+</div>
+</section><section class="relative z-10 bg-white px-4 py-20 sm:px-6 lg:px-8" id="group-home-section"><div class="mx-auto max-w-6xl"><div class="text-center"><p class="text-xs font-bold uppercase tracking-[0.3em] text-amber-600">Sign up</p><h2 class="mx-auto mt-3 max-w-4xl font-serif text-3xl font-semibold text-[#0b1a33] sm:text-4xl">ARE YOU READY TO JOIN “FOOTPRINTS OF THE MEKONG”?</h2><span class="mx-auto mt-5 block h-px w-20 bg-amber-400"></span></div><div class="mt-12 grid items-stretch gap-8 lg:grid-cols-2"><div class="flex flex-col rounded-3xl bg-white p-8 shadow-xl ring-1 ring-gray-200 sm:p-10"><span class="self-start rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-wider border-amber-400/60 text-amber-700">For new customers exploring and wanting to reserve a spot</span><h3 class="mt-5 font-serif text-2xl font-semibold text-[#0b1a33]">TOUR RESERVATION</h3><div class="flex-1"><p class="mt-4 leading-relaxed text-gray-600">Do you want to discover Mekong Delta culture and take part in the lively Ngo Boat Racing Festival?</p><p class="mt-4 leading-relaxed text-gray-600">Each group is limited to a maximum of 29 guests to ensure a deep experience and the best care. Please fill in the registration form so the organizers can contact you with itinerary details and confirm your reservation.</p></div><a class="mt-8 inline-flex items-center justify-center gap-2 self-start rounded-full px-6 py-3 text-sm font-semibold transition bg-[#0b1a33] text-white hover:bg-[#13294f]" href="https://forms.gle/qBeYpkv8qGZakSQp7" rel="noopener noreferrer" target="_blank">Open the reservation form<svg aria-hidden="true" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14m0 0-6-6m6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div><div class="flex flex-col rounded-3xl bg-[#0b1a33] p-8 text-white shadow-xl sm:p-10"><span class="self-start rounded-full border px-3 py-1 text-[11px] font-semibold uppercase tracking-wider border-white/30 text-amber-300">For guests who HAVE SUCCESSFULLY BOOKED the tour</span><h3 class="mt-5 font-serif text-2xl font-semibold text-white">PRE-TRIP INFORMATION SURVEY</h3><div class="flex-1"><p class="mt-4 leading-relaxed text-gray-200">So we can prepare a thoughtful, personalized journey just for you!</p><p class="mt-4 leading-relaxed text-gray-200">To ensure safety and complete comfort (arranging vegetarian/allergy menus, room assignments, life jackets, Khmer costume sizes for photos, etc.), guests who have booked are asked to spend 2 minutes completing the survey before the departure date.</p></div><a class="mt-8 inline-flex items-center justify-center gap-2 self-start rounded-full px-6 py-3 text-sm font-semibold transition bg-amber-400 text-[#0b1a33] hover:bg-amber-300" href="https://forms.gle/ym7Q8dv7sntxM8Rh9" rel="noopener noreferrer" target="_blank">Take the survey<svg aria-hidden="true" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M5 12h14m0 0-6-6m6 6-6 6" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div></div></div></section><footer class="text-gray-300" style="background: radial-gradient(ellipse at 0% 20%, #0b2a4a 0%, #0b1a33 45%, #091226 100%);">
+<div class="mx-auto max-w-7xl px-4 pb-8 pt-14 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr] lg:gap-12">
+<div>
+<a aria-label="Mekong Travels" class="inline-flex flex-col items-start gap-2" href="index.html" title="Mekong Travels">
+<img alt="Mekong Travel logo" class="h-20 w-20 object-contain" loading="eager" src="image/logo-mekong-travel.png"/>
+<span class="bg-gradient-to-r from-sky-400 via-green-400 to-orange-400 bg-clip-text text-lg font-extrabold uppercase tracking-wide text-transparent">Mekong Travels</span>
+<span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-300">Follow the Flow – Make Memories as You Go.</span>
+</a>
+<p class="mt-5 max-w-xs text-sm leading-relaxed text-gray-400">“Footprints” represents the journey and experiences of travelers.
+“The river region” represents the natural landscape, culture and daily life of Southwestern Vietnam.</p>
+</div>
+<div>
+<h2 class="border-b border-white/10 pb-3 text-xs font-extrabold uppercase tracking-widest text-white">Quick Links</h2>
+<ul class="mt-5 space-y-3 text-sm">
+<li><a class="transition hover:text-white" href="index.html">Home</a></li>
+<li><a class="transition hover:text-white" href="information_en.html">Information</a></li>
+<li><a class="transition hover:text-white" href="destinations_en.html">Destinations</a></li>
+<li><a class="transition hover:text-white" href="pricing_en.html">Pricing</a></li>
+</ul>
+</div>
+<div>
+<h2 class="border-b border-white/10 pb-3 text-xs font-extrabold uppercase tracking-widest text-white">Contact Us</h2>
+<ul class="mt-5 space-y-3 text-sm">
+<li class="relative flex items-center gap-3"><svg aria-hidden="true" class="h-4 w-4 shrink-0 text-sky-400" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><rect height="14" rx="2" width="18" x="3" y="5"></rect><path d="m3 7 9 6 9-6" stroke-linejoin="round"></path></svg><button class="break-all text-left transition hover:text-white" data-copy="ngocnb170810@gmail.com" data-title-en="Click to copy" data-title-vi="Bấm để sao chép" title="Click to copy" type="button">ngocnb170810@gmail.com</button><span aria-live="polite" class="copy-tip pointer-events-none absolute -top-8 left-7 flex items-center gap-1 rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-green-600 shadow-lg" role="status">Copied</span></li>
+<li class="relative flex items-center gap-3"><svg aria-hidden="true" class="h-4 w-4 shrink-0 text-sky-400" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" stroke-linejoin="round"></path></svg><button class="break-all text-left transition hover:text-white" data-copy="0763254866" title="Click to copy" type="button">0763254866</button><span aria-live="polite" class="copy-tip pointer-events-none absolute -top-8 left-7 flex items-center gap-1 rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-green-600 shadow-lg" role="status">Copied</span></li>
+<li class="relative flex items-center gap-3"><svg aria-hidden="true" class="h-4 w-4 shrink-0 text-sky-400" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z" stroke-linejoin="round"></path><circle cx="12" cy="9" r="2.5"></circle></svg><button class="text-left transition hover:text-white" data-copy="Số 131 Cô Bắc, Phường Cầu Ông Lãnh (trước đây thuộc phường Cô Giang), Quận 1, TP. Hồ Chí Minh" data-title-en="Click to copy" data-title-vi="Bấm để sao chép" title="Click to copy" type="button">Số 131 Cô Bắc, Phường Cầu Ông Lãnh (trước đây thuộc phường Cô Giang), Quận 1, TP. Hồ Chí Minh</button><span aria-live="polite" class="copy-tip pointer-events-none absolute -top-8 left-7 flex items-center gap-1 rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-green-600 shadow-lg" role="status"><svg aria-hidden="true" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path></svg>Copied</span></li>
+</ul>
+<div class="mt-5 flex gap-3">
+<a aria-label="Facebook" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:bg-white/15 hover:text-white" href="#"><svg aria-hidden="true" class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8z"></path></svg></a>
+<a aria-label="GitHub" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:bg-white/15 hover:text-white" href="#"><svg aria-hidden="true" class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6a4.7 4.7 0 0 1 1.2-3.2c-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2a4.7 4.7 0 0 1 1.2 3.2c0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"></path></svg></a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<!-- BACK TO TOP -->
+<a aria-label="Back to top" class="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-[#0b1a33] text-white shadow-lg transition hover:bg-[#13294f]" href="#" id="back-to-top">
+<svg aria-hidden="true" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="m5 15 7-7 7 7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+<script>
+    // ===== SCROLL REVEAL (fade-in + blur-in, hiện dần từ trên xuống khi cuộn) =====
+    const io = 'IntersectionObserver' in window
+      ? new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' })
+      : null;
+
+    function reveal(els, base = 0, step = 0, cols = 0) {
+      [...els].forEach((el, i) => {
+        const n = cols ? i % cols : i;
+        el.classList.add('reveal');
+        el.style.setProperty('--d', (base + n * step) + 'ms');
+        io ? io.observe(el) : el.classList.add('is-visible');
+      });
+    }
+
+    const q = (sel) => document.querySelectorAll(sel);
+    reveal(q('.hero-bg section:nth-of-type(1) > *'), 100, 0);         // H1, mô tả, nút: hiện cùng lúc
+    reveal(q('#spotlight > div > *'), 450, 150);
+    reveal(q('#why-visit .text-center > *'), 0, 150);                   // tiêu đề + phụ đề
+    reveal(q('#why-visit article'), 0, 0, 3);                          // 3 thẻ: ảnh + chữ hiện cùng lúc
+    reveal(q('#summary-home > div > *'), 0, 0);                        // section tóm tắt tour: hiện cùng lúc
+    reveal(q('#group-home-section > div > *'), 0, 0);                  // section quy mô đoàn: hiện cùng lúc
+    reveal(q('#staff-home-section > div > *'), 0, 0);                  // section nhân sự: hiện cùng lúc
+
+    // Nút back-to-top: cuộn mượt lên đầu trang
+    document.getElementById('back-to-top').addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    // Bấm để copy thông tin liên hệ + hiện "Copied" với dấu tích xanh
+    async function copyText(text) {
+      try { await navigator.clipboard.writeText(text); }
+      catch {
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+      }
+    }
+    document.querySelectorAll('[data-copy]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        await copyText(btn.dataset.copy);
+        const tip = btn.parentElement.querySelector('.copy-tip');
+        tip.classList.add('show');
+        clearTimeout(tip._t);
+        tip._t = setTimeout(() => tip.classList.remove('show'), 500);
+      });
+    });
+    // ===== SPOTLIGHT CAROUSEL: 3 thẻ hiển thị, thẻ giữa lớn nhất, thẻ bên cạnh tối hơn =====
+    const SP = [
+      { /* ảnh thẻ: image/spot-01-con-thoi-son.jpg */ cat: "MY THO • TIEN GIANG", loc: "", title: "Con Thoi Son", grad: "from-lime-400 to-green-700",
+        quote: "“A symphony of rivers and orchards.”",
+        desc: "Glide along the vast Tien River and ride a three-leaf sampan through shaded nipa-palm canals. Enjoy ripe fruit picked fresh in the orchard and let your heart follow the heartfelt melodies of Southern Vietnamese Đờn ca tài tử folk music.",
+        tags: ["Waterways", "Sampan rides", "Orchards"] , img: "image/spot-01-con-thoi-son.jpg" },
+      { /* ảnh thẻ: image/spot-02-lang-keo-dua.jpg */ cat: "BEN TRE • VINH LONG", loc: "", title: "Coconut Candy Village", grad: "from-amber-400 to-orange-600",
+        quote: "“Sweetness made by hand.”",
+        desc: "Watch coconut candy being cooked, cut and wrapped by hand in the heart of Ben Tre’s coconut land. Try one step of candy-making yourself, savor the rich aroma of pure coconut cream and keep a sweet memory.",
+        tags: ["Coconut candy", "Handmade", "Local gifts"] , img: "image/spot-02-lang-keo-dua.jpg" },
+      { /* ảnh thẻ: image/spot-03-dua-ghe-ngo.jpg */ cat: "SOC TRANG", loc: "", title: "Ngo Boat Racing Festival", grad: "from-sky-400 to-blue-700",
+        quote: "“Rousing drumbeats in the heart of the waterways.”",
+        desc: "Join the passionate, majestic atmosphere of the biggest traditional Ngo boat race of the year along the Maspero River. Admire the colorful Ngo boats and discover the unique cultural identity of the Khmer people.",
+        tags: ["Traditional festival", "Ngo boat racing", "Khmer culture"] , img: "image/spot-03-dua-ghe-ngo.jpg" },
+      { /* ảnh thẻ: image/spot-04-chua-som-rong.jpg */ cat: "SOC TRANG", loc: "", title: "Som Rong Pagoda", grad: "from-rose-400 to-red-700",
+        quote: "“A magnificent and majestic spiritual space.”",
+        desc: "Admire the giant open-air reclining Buddha statue entering Nirvana and the vividly colored monolithic stone stupa. Try on traditional Khmer costumes and keep beautiful photos.",
+        tags: ["Khmer architecture", "Reclining Buddha", "Traditional costumes"] , img: "image/spot-04-chua-som-rong.jpg" },
+    ];
+    const N = SP.length;
+    let spIdx = 0;
+    const stage = document.getElementById('sp-stage');
+    const dotsBox = document.getElementById('sp-dots');
+    const info = document.getElementById('sp-info');
+
+    SP.forEach((it, i) => {
+      const card = document.createElement('div');
+      card.className = 'sp-card bg-gradient-to-br ' + it.grad;
+      card.dataset.pos = 'hidden';
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-label', it.title);
+      card.innerHTML = (it.img ? '<img src="' + it.img + '" alt="' + it.title + '" class="absolute inset-0 h-full w-full object-cover" onerror="this.onerror=null;this.removeAttribute(\'src\');this.style.background=\'linear-gradient(135deg,#0b1a33,#0e7490)\';" />' : '') + '<div class="sp-shade"></div><div class="sp-label"><p class="text-[10px] font-semibold uppercase tracking-widest text-amber-200">' + it.cat + '</p><p class="mt-1 font-serif text-xl font-semibold leading-tight text-white">' + it.title + '</p></div>';
+      card.addEventListener('click', () => go(i));
+      card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(i); } });
+      stage.appendChild(card);
+
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'sp-dot';
+      dot.setAttribute('aria-label', 'Go to ' + (i + 1));
+      dot.addEventListener('click', () => go(i));
+      dotsBox.appendChild(dot);
+    });
+
+    // Vị trí tương đối so với thẻ đang chọn: 0 = giữa, -1 = trái, 1 = phải, còn lại ẩn
+    function relPos(i) {
+      let d = (i - spIdx + N) % N;
+      if (d > N / 2) d -= N;
+      return d;
+    }
+
+    // Nền section 2: cross-fade giữa hai lớp màu
+    function setBg(grad) {
+      const a = document.getElementById('sp-bg-a'), b = document.getElementById('sp-bg-b');
+      const on = a.dataset.on === '1' ? a : b, off = on === a ? b : a;
+      if (on.className.indexOf(grad) !== -1) return;
+      off.className = 'sp-layer pointer-events-none absolute inset-0 bg-gradient-to-br ' + grad;
+      off.style.opacity = 1; off.dataset.on = '1';
+      on.style.opacity = 0; on.dataset.on = '0';
+    }
+    function renderInfo() {
+      const it = SP[spIdx];
+      document.getElementById('sp-cat').textContent = it.cat;
+      const loc = document.getElementById('sp-loc');
+      loc.textContent = it.loc;
+      loc.classList.toggle('hidden', !it.loc);
+      document.getElementById('sp-title').textContent = it.title;
+      document.getElementById('sp-quote').textContent = it.quote;
+      document.getElementById('sp-desc').textContent = it.desc;
+      document.getElementById('sp-tags').innerHTML = it.tags.map(t =>
+        '<li class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-amber-500"></span>' + t + '</li>').join('');
+    }
+
+    function renderStage() {
+      [...stage.children].forEach((card, i) => {
+        const d = relPos(i);
+        card.dataset.pos = (d === -1 || d === 0 || d === 1) ? String(d) : 'hidden';
+      });
+      [...dotsBox.children].forEach((dot, i) => dot.classList.toggle('active', i === spIdx));
+    }
+
+    function go(i) {
+      if (i === spIdx) return;
+      spIdx = (i + N) % N;
+      info.classList.add('sp-out');
+      setTimeout(() => {
+        renderInfo();
+        info.classList.remove('sp-out');
+      }, 300);
+      renderStage();
+    }
+
+    document.getElementById('sp-prev').addEventListener('click', () => go((spIdx - 1 + N) % N));
+    document.getElementById('sp-next').addEventListener('click', () => go((spIdx + 1) % N));
+
+    renderInfo();
+    renderStage();
+  </script>
+<script>
+    // Thanh trên cùng màu navy khi ở đầu trang; khi kéo xuống thì nền trong suốt
+    (function () {
+      var h = document.querySelector('header.site-nav');
+      function onScroll() { h.classList.toggle('scrolled', window.scrollY > 40); }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+</body>
+</html>
