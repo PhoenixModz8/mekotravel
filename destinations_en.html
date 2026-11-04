@@ -25,9 +25,7 @@ tailwind.config = {
 <style>
 /* Mekong Travels / Mekong – styles dùng chung cho các trang */
 /* Ghi chú: Tailwind được nạp qua CDN trong HTML; file này chứa phần CSS riêng. */
-
 html { scrollbar-gutter: stable; }
-
 /* Trang này không có khu Hero (.hero-bg). */
     .hero-bg {
       background-color: #14532d;
@@ -37,30 +35,21 @@ html { scrollbar-gutter: stable; }
       background-size: cover;
       background-position: center;
     }
-
 /* Scroll reveal: fade-in + blur-in khi cuộn tới (chỉ ẩn trước khi hiện nếu JS chạy) */
     @keyframes revealIn {
       from { opacity: 0; filter: blur(12px); transform: translateY(24px); }
       to   { opacity: 1; filter: blur(0);    transform: none; }
     }
-
 .js .reveal:not(.is-visible) { opacity: 0; filter: blur(12px); transform: translateY(24px); }
-
 .reveal.is-visible { animation: revealIn .9s cubic-bezier(.2,.7,.2,1) var(--d, 0ms) backwards; }
-
 @media (prefers-reduced-motion: reduce) {
       .reveal, .reveal:not(.is-visible) { opacity: 1 !important; filter: none !important; transform: none !important; animation: none !important; }
     }
-
 .copy-tip { opacity: 0; transform: translateY(4px); transition: opacity .15s, transform .15s; }
-
 .copy-tip.show { opacity: 1; transform: none; }
-
 /* ===== Spotlight carousel (section 2, nền trắng) ===== */
     #spotlight { background-color: #ffffff; }
-
 #spotlight .sp-stage { height: 360px; }
-
 #spotlight .sp-card {
       position: absolute; left: 50%; top: 50%;
       width: 230px; height: 320px; margin: -160px 0 0 -115px;
@@ -69,45 +58,28 @@ html { scrollbar-gutter: stable; }
       transition: transform .6s cubic-bezier(.2,.8,.2,1), filter .6s ease, opacity .6s ease;
       --off: 190px;
     }
-
 #spotlight .sp-card[data-pos="0"]      { transform: translateX(0) scale(1);                       filter: blur(0) brightness(1);    opacity: 1; z-index: 3; }
-
 #spotlight .sp-card[data-pos="-1"]     { transform: translateX(calc(var(--off) * -1)) scale(.8);  filter: blur(0) brightness(.45); opacity: 1; z-index: 2; }
-
 #spotlight .sp-card[data-pos="1"]      { transform: translateX(var(--off)) scale(.8);             filter: blur(0) brightness(.45); opacity: 1; z-index: 2; }
-
 #spotlight .sp-card[data-pos="hidden"] { transform: scale(.6); filter: blur(14px); opacity: 0; visibility: hidden; z-index: 1; }
-
 #spotlight .sp-card .sp-shade { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.6), rgba(0,0,0,0) 60%); }
-
 #spotlight .sp-card .sp-label { position: absolute; left: 16px; right: 16px; bottom: 16px; }
-
 @media (max-width: 640px) {
       #spotlight .sp-card { --off: 120px; width: 190px; height: 270px; margin: -135px 0 0 -95px; }
     }
-
 #spotlight .sp-info { transition: opacity .3s ease, filter .3s ease, transform .3s ease; }
-
 #spotlight .sp-info.sp-out { opacity: 0; filter: blur(6px); transform: translateY(8px); }
-
 #spotlight .sp-layer { transition: opacity .9s ease; }
-
 #spotlight .sp-arrow {
       display: flex; height: 44px; width: 44px; align-items: center; justify-content: center;
       border-radius: 9999px; border: none; color: #0b1a33;
       background: #ffffff; box-shadow: 0 6px 18px rgba(0,0,0,.25); transition: background-color .25s, color .25s;
     }
-
 #spotlight .sp-arrow:hover { background: #0b1a33; color: #ffffff; }
-
 #spotlight .sp-dot { height: 8px; width: 8px; border-radius: 9999px; background: rgba(255,255,255,.5); transition: width .3s, background-color .3s; }
-
 #spotlight .sp-dot.active { width: 24px; background: #ffffff; }
-
 @media (prefers-reduced-motion: reduce) { #spotlight .sp-card, #spotlight .sp-info { transition: none; } }
-
 :focus-visible { outline: 2px solid #7dd3fc; outline-offset: 2px; }
-
 /* Ảnh banner: thay URL bằng ảnh bãi biển/hàng cọ của bạn */
     .banner-bg {
       background-color: #0e7490;
@@ -117,63 +89,37 @@ html { scrollbar-gutter: stable; }
       background-size: cover;
       background-position: center;
     }
-
 .filter-btn { white-space: nowrap; border-radius: 9999px; padding: .5rem 1rem; font-size: .875rem; font-weight: 500;
       color: #fff; background: transparent; transition: background-color .25s, color .25s; }
-
 .filter-btn:hover { background: rgba(255,255,255,.15); }
-
 .filter-btn[aria-selected="true"] { background: #fff; color: #0b1a33; }
-
 @media (min-width: 640px) { .filter-btn { padding: .5rem 1.5rem; } }
-
 #modal { visibility: hidden; opacity: 0; transition: opacity .25s ease, visibility .25s; }
-
 #modal.open { visibility: visible; opacity: 1; }
-
 #modal .panel { transform: translateX(100%); transition: transform .4s cubic-bezier(.2,.8,.2,1); }
-
 #modal.open .panel { transform: none; }
-
 /* Khung modal: nằm cố định, dạt sang phải */
     #modal { position: fixed; inset: 0; display: flex; justify-content: flex-end; }
-
 /* Drawer width: full on phones, ~1/3 of the screen on desktop */
     #modal .panel { width: 100%; max-width: none; height: calc(100% - 24px); margin: 12px; }
-
 #modal .info-box { border: 1px solid #ffffff; border-radius: 20px; background: rgba(255,255,255,.25); padding: 16px 18px; }
-
 /* Ảnh nền: rõ ở trên, tối dần xuống dưới */
     #modal .modal-shade { background: linear-gradient(to bottom, rgba(11,26,51,.05) 0%, rgba(11,26,51,.35) 30%, rgba(11,26,51,.85) 62%, rgba(11,26,51,.97) 100%); }
-
 #modal .modal-spacer { height: 42%; min-height: 240px; }
-
 #modal #modal-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-
 #modal .modal-scroll::-webkit-scrollbar { width: 6px; }
-
 #modal .modal-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,.25); border-radius: 9999px; }
-
 @media (min-width: 640px) { #modal .panel { width: calc(420px - 24px); } }
-
 @media (min-width: 1024px) { #modal .panel { width: calc(33.333vw - 24px); min-width: 356px; max-width: 536px; } }
-
 @media (prefers-reduced-motion: reduce) { #modal, #modal .panel { transition: none; } }
-
 :focus-visible { outline: 2px solid #38bdf8; outline-offset: 2px; }
-
 /* Banner: ảnh hero, phủ tối nhẹ */
     .banner-bg { background-color: #0e7490; background-image: url("image/banner-destinations_en.jpg"), linear-gradient(135deg, #0e7490, #0369a1); background-size: cover; background-position: center; }
-
 /* ===== Language switch (EN / VI) ===== */
     html[lang="en"] [data-lang="vi"] { display: none !important; }
-
 html[lang="vi"] [data-lang="en"] { display: none !important; }
-
 .flag-btn { opacity: .55; transition: opacity .2s, box-shadow .2s; border-radius: 3px; overflow: hidden; }
-
 .flag-btn:hover { opacity: 1; }
-
 html[lang="en"] #flag-en, html[lang="vi"] #flag-vi { opacity: 1; box-shadow: 0 0 0 2px rgba(255,255,255,.7); }
       /* Navbar luôn hiển thị khi cuộn, nền xanh navy */
     header.site-nav { position: sticky; top: 0; z-index: 30; background: #0b1a33; transition: box-shadow .3s ease; }
@@ -189,7 +135,7 @@ html[lang="en"] #flag-en, html[lang="vi"] #flag-vi { opacity: 1; box-shadow: 0 0
 <!-- NAVBAR -->
 <header class="site-nav sticky top-0 z-30 w-full bg-[#0b1a33] text-white">
 <nav class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-y-2 px-4 py-3 sm:px-6 lg:px-8">
-<a aria-label="Home" class="flex shrink-0 items-center gap-2.5" href="index.html" title="Home"><img alt="Mekong Travel logo" class="h-9 w-9 object-contain" loading="eager" src="image/logo-mekong-travel.png"/><span class="whitespace-nowrap text-lg font-bold tracking-wide text-white sm:text-xl">Mekong Travel</span></a>
+<a aria-label="Home" class="shrink-0 flex items-center gap-3" href="index.html" title="Home"><img alt="Mekong Travel logo" class="h-14 w-14 object-contain" loading="eager" src="image/logo-mekong-travel.png"/><span class="whitespace-nowrap text-lg font-extrabold tracking-wide text-white">Mekong Travel</span></a>
 <ul class="order-last flex w-full items-center justify-center gap-1 rounded-full border border-white/25 bg-white/10 p-2 text-sm font-medium md:order-none md:w-auto md:gap-2 md:p-2.5 md:justify-center md:text-[15px]">
 <li><a class="rounded-full px-5 py-2 text-white/85 transition hover:bg-white/10 hover:text-white" href="index.html">Home</a></li>
 <li><a class="rounded-full px-5 py-2 text-white/85 transition hover:bg-white/10 hover:text-white" href="information_en.html">Information</a></li>
@@ -234,7 +180,7 @@ Mekong: Explore the Undiscovered
 <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr] lg:gap-12">
 <div>
 <a aria-label="Mekong Travels" class="inline-flex flex-col items-start gap-2" href="index.html" title="Mekong Travels">
-<img alt="Mekong Travel logo" class="h-20 w-20 object-contain" loading="eager" src="image/logo-mekong-travel.png"/>
+<img alt="Mekong Travel logo" class="h-24 w-24 object-contain" loading="eager" src="image/logo-mekong-travel.png"/>
 <span class="bg-gradient-to-r from-sky-400 via-green-400 to-orange-400 bg-clip-text text-lg font-extrabold uppercase tracking-wide text-transparent">Mekong Travels</span>
 <span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-300">Follow the Flow – Make Memories as You Go.</span>
 </a>
@@ -257,10 +203,6 @@ Mekong: Explore the Undiscovered
 <li class="relative flex items-center gap-3"><svg aria-hidden="true" class="h-4 w-4 shrink-0 text-sky-400" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" stroke-linejoin="round"></path></svg><button class="break-all text-left transition hover:text-white" data-copy="0763254866" title="Click to copy" type="button">0763254866</button><span aria-live="polite" class="copy-tip pointer-events-none absolute -top-8 left-7 flex items-center gap-1 rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-green-600 shadow-lg" role="status">Copied</span></li>
 <li class="relative flex items-center gap-3"><svg aria-hidden="true" class="h-4 w-4 shrink-0 text-sky-400" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z" stroke-linejoin="round"></path><circle cx="12" cy="9" r="2.5"></circle></svg><button class="text-left transition hover:text-white" data-copy="Số 131 Cô Bắc, Phường Cầu Ông Lãnh (trước đây thuộc phường Cô Giang), Quận 1, TP. Hồ Chí Minh" data-title-en="Click to copy" data-title-vi="Bấm để sao chép" title="Click to copy" type="button">Số 131 Cô Bắc, Phường Cầu Ông Lãnh (trước đây thuộc phường Cô Giang), Quận 1, TP. Hồ Chí Minh</button><span aria-live="polite" class="copy-tip pointer-events-none absolute -top-8 left-7 flex items-center gap-1 rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-green-600 shadow-lg" role="status"><svg aria-hidden="true" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path></svg>Copied</span></li>
 </ul>
-<div class="mt-5 flex gap-3">
-<a aria-label="Facebook" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:bg-white/15 hover:text-white" href="#"><svg aria-hidden="true" class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8z"></path></svg></a>
-<a aria-label="GitHub" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:bg-white/15 hover:text-white" href="#"><svg aria-hidden="true" class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6a4.7 4.7 0 0 1 1.2-3.2c-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2a4.7 4.7 0 0 1 1.2 3.2c0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"></path></svg></a>
-</div>
 </div>
 </div>
 </div>
@@ -287,9 +229,6 @@ Mekong: Explore the Undiscovered
 <svg aria-hidden="true" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z" stroke-linejoin="round"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
 <span></span>
 </p>
-</div>
-<div class="info-box" id="modal-photo-box">
-<img alt="" class="block aspect-[4/3] w-full rounded-xl object-cover" id="modal-photo"/>
 </div>
 <div class="info-box">
 <p class="font-medium leading-relaxed text-white" id="modal-desc"></p>
@@ -319,7 +258,6 @@ Mekong: Explore the Undiscovered
           });
         }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' })
       : null;
-
     function reveal(els, base = 0, step = 0, cols = 0) {
       [...els].forEach((el, i) => {
         const n = cols ? i % cols : i;
@@ -328,9 +266,8 @@ Mekong: Explore the Undiscovered
         io ? io.observe(el) : el.classList.add('is-visible');
       });
     }
-
     // 1. DỮ LIỆU: mỗi địa điểm có trường category ('beach' | 'nature' | 'heritage')
-const VI_DEST = [{"descVi": "Con đường đi bộ sôi động ngay trung tâm Sài Gòn, nơi du khách dạo chơi, thưởng thức đồ ăn đường phố và ngắm nhịp sống thành phố về đêm.", "detailsVi": "Phố đi bộ Nguyễn Huệ nằm ở trung tâm Quận 1, là điểm hẹn quen thuộc của người dân và du khách với không gian rộng rãi, đài phun nước, đèn trang trí và nhiều quán cà phê quanh khu vực.", "highlightsVi": ["Không gian đi bộ rộng rãi ở trung tâm Quận 1", "Đài phun nước và đèn trang trí về đêm", "Gần Nhà thờ Đức Bà và Bưu điện Trung tâm"]}, {"descVi": "Chợ nổi trên sông Mekong, nơi ghe thuyền buôn bán trái cây và nông sản lúc bình minh.", "detailsVi": "Cái Bè là một trong những chợ nổi nổi tiếng nhất vùng Đồng bằng sông Cửu Long. Ghe thuyền tụ họp từ sáng sớm, người bán treo hàng lên cột cao để người mua nhận ra loại hàng mà mỗi ghe chở.", "highlightsVi": ["Ghe trái cây treo hàng trên cột", "Đẹp nhất vào sáng sớm", "Gần xưởng thủ công và vườn cây"]}, {"descVi": "Ngôi chùa nổi tiếng kết hợp các yếu tố kiến trúc Đông và Tây.", "detailsVi": "Chùa Vĩnh Tràng là một trong những ngôi chùa được ghé thăm nhiều nhất ở Mỹ Tho. Các công trình kết hợp nhiều phong cách kiến trúc, và khu vườn có nhiều tượng Phật lớn.", "highlightsVi": ["Kết hợp nhiều phong cách kiến trúc", "Nhiều tượng Phật lớn trong vườn", "Điểm dừng dễ dàng trong ngày đi Mỹ Tho"]}, {"descVi": "Cồn xanh trên sông, đi thuyền đến, có vườn cây, trà mật ong và đi xuồng trên kênh.", "detailsVi": "Thới Sơn là một cồn xanh trên sông Tiền, chỉ một chuyến thuyền ngắn từ Mỹ Tho. Chuyến đi thường gồm nếm trái cây và trà mật ong địa phương, nghe đờn ca tài tử và chèo xuồng qua những con kênh hẹp.", "highlightsVi": ["Đi thuyền qua sông", "Thưởng thức trà mật ong và trái cây", "Chèo xuồng qua kênh hẹp"]}, {"descVi": "Cồn yên tĩnh trên sông Mekong với vườn trái cây và đời sống làng quê.", "detailsVi": "Tân Long là lựa chọn yên tĩnh hơn so với các cồn đông đúc gần đó. Bạn có thể đi bộ hoặc đạp xe trên các lối làng, thăm vườn trái cây và thưởng thức bữa cơm gia đình bên bờ sông.", "highlightsVi": ["Vườn trái cây và lối đi trong làng", "Đi bộ và đạp xe", "Bữa ăn gia đình bên bờ sông"]}, {"descVi": "Cồn sông nổi tiếng với đồ thủ công từ dừa, vườn cây ăn trái và nhạc truyền thống.", "detailsVi": "Cồn Phụng là một cồn nổi tiếng ở Bến Tre, thường được ghé thăm vì các sản phẩm từ dừa và những đường đi bộ trong vườn cây. Đây cũng gắn với hình ảnh một nhân vật tôn giáo địa phương, được gọi là 'Ông Đạo Dừa'.", "highlightsVi": ["Đồ thủ công và sản phẩm từ dừa", "Vườn cây ăn trái", "Biểu diễn nhạc truyền thống"]}, {"descVi": "Xem kẹo dừa được làm thủ công ngay giữa xứ dừa Bến Tre.", "detailsVi": "Bến Tre được mệnh danh là xứ dừa, và Mỏ Cày nổi tiếng với các xưởng làm kẹo dừa. Khách có thể xem kẹo được nấu, cắt và gói, sau đó nếm thử mẫu tươi và mua quà về.", "highlightsVi": ["Kẹo được nấu, cắt và gói thủ công", "Mẫu tươi để nếm thử", "Quà từ dừa mang về"]}, {"descVi": "Khu du lịch sinh thái rừng ngập mặn, khám phá các đường thủy bằng thuyền.", "detailsVi": "Vàm Hồ là khu du lịch sinh thái thuộc huyện Ba Tri, nằm giữa sông ngòi và kênh rừng ngập mặn. Đây là lựa chọn phù hợp cho du khách muốn một điểm dừng yên tĩnh, gần thiên nhiên, tránh xa các cồn đông đúc hơn.", "highlightsVi": ["Đi thuyền qua kênh rừng ngập mặn", "Cảnh sông yên tĩnh", "Hải sản địa phương gần đó"]}, {"descVi": "Bảo tàng về lịch sử và văn hóa Bến Tre cùng đồng bằng sông Cửu Long.", "detailsVi": "Bảo tàng là nơi giới thiệu tốt về tỉnh, với các hiện vật về lịch sử địa phương, văn hóa và đời sống thường ngày ở Đồng bằng sông Cửu Long. Đây là điểm dừng ngắn hợp lý trước khi đi đến vườn cây và các cồn.", "highlightsVi": ["Trưng bày lịch sử địa phương", "Đồ vật truyền thống và ảnh cũ", "Điểm khởi đầu tốt để hiểu về tỉnh"]}, {"descVi": "Chùa Khmer nổi tiếng với đàn dơi ăn quả trú ngụ trên tán cây.", "detailsVi": "Chùa Dơi, hay chùa Mahatup, là ngôi chùa Khmer nổi tiếng với đàn dơi ăn quả trú trên các tán cây quanh chùa. Nên ghé vào lúc hoàng hôn để xem đàn dơi bay ra.", "highlightsVi": ["Đàn dơi trú trên cây", "Kiến trúc chùa Khmer", "Đẹp nhất vào lúc hoàng hôn"]}, {"descVi": "Một trong những chùa Khmer cổ nhất vùng Đồng bằng sông Cửu Long, mái vàng chạm trổ.", "detailsVi": "Chùa Kh'leang được xem là một trong những chùa Khmer cổ nhất trong vùng. Chùa nổi bật với đường mái vàng, các chi tiết chạm khắc tinh xảo và sân chùa yên tĩnh, đồng thời là nơi quan trọng với cộng đồng Khmer địa phương.", "highlightsVi": ["Đường mái vàng kiểu Khmer", "Chạm khắc tinh xảo", "Sân chùa yên tĩnh"]}, {"descVi": "Chùa nổi tiếng với tượng Phật và các công trình đắp bằng đất sét, cùng nghệ thuật gốm chi tiết.", "detailsVi": "Chùa Đất Sét, còn gọi là Bửu Sơn, nổi tiếng với nhiều tượng và công trình làm bằng đất sét. Hàng tượng Phật và bảo tháp làm nên một trong những ngôi chùa đặc sắc nhất ở Sóc Trăng.", "highlightsVi": ["Tượng Phật đắp bằng đất sét", "Bảo tháp và chi tiết trang trí", "Khuôn viên đặc sắc, dễ chụp ảnh"]}, {"descVi": "Chợ nổi sôi động nơi năm con kênh gặp nhau, đông ghe thuyền vào lúc bình minh.", "detailsVi": "Được đặt tên theo điểm năm con kênh gặp nhau, chợ nổi Ngã Năm đông nhất vào sáng sớm. Ghe thuyền chở trái cây, rau củ và hàng địa phương, và du khách có thể đi thuyền một vòng quanh ngã ba.", "highlightsVi": ["Ghe thuyền tụ họp lúc bình minh", "Trái cây và rau củ địa phương", "Đi thuyền quanh ngã ba kênh"]}];
+const VI_DEST = [{"descVi": "Đoàn tập trung tại Phố đi bộ Nguyễn Huệ, khu vực trước Tượng đài Chủ tịch Hồ Chí Minh. Hướng dẫn viên đón khách, kiểm tra danh sách, hỗ trợ sắp xếp hành lý và phổ biến những thông tin cần thiết trước khi khởi hành. Sau khi hoàn tất công tác chuẩn bị, đoàn chính thức bắt đầu hành trình khám phá miền Tây sông nước.", "detailsVi": "", "highlightsVi": []}, {"descVi": "Chợ nổi trên sông Mekong, nơi ghe thuyền buôn bán trái cây và nông sản lúc bình minh.", "detailsVi": "Cái Bè là một trong những chợ nổi nổi tiếng nhất vùng Đồng bằng sông Cửu Long. Ghe thuyền tụ họp từ sáng sớm, người bán treo hàng lên cột cao để người mua nhận ra loại hàng mà mỗi ghe chở.", "highlightsVi": ["Ghe trái cây treo hàng trên cột", "Đẹp nhất vào sáng sớm", "Gần xưởng thủ công và vườn cây"]}, {"descVi": "Ngôi chùa nổi tiếng kết hợp các yếu tố kiến trúc Đông và Tây.", "detailsVi": "Chùa Vĩnh Tràng là một trong những ngôi chùa được ghé thăm nhiều nhất ở Mỹ Tho. Các công trình kết hợp nhiều phong cách kiến trúc, và khu vườn có nhiều tượng Phật lớn.", "highlightsVi": ["Kết hợp nhiều phong cách kiến trúc", "Nhiều tượng Phật lớn trong vườn", "Điểm dừng dễ dàng trong ngày đi Mỹ Tho"]}, {"descVi": "Cồn xanh trên sông, đi thuyền đến, có vườn cây, trà mật ong và đi xuồng trên kênh.", "detailsVi": "Thới Sơn là một cồn xanh trên sông Tiền, chỉ một chuyến thuyền ngắn từ Mỹ Tho. Chuyến đi thường gồm nếm trái cây và trà mật ong địa phương, nghe đờn ca tài tử và chèo xuồng qua những con kênh hẹp.", "highlightsVi": ["Đi thuyền qua sông", "Thưởng thức trà mật ong và trái cây", "Chèo xuồng qua kênh hẹp"]}, {"descVi": "Cồn yên tĩnh trên sông Mekong với vườn trái cây và đời sống làng quê.", "detailsVi": "Tân Long là lựa chọn yên tĩnh hơn so với các cồn đông đúc gần đó. Bạn có thể đi bộ hoặc đạp xe trên các lối làng, thăm vườn trái cây và thưởng thức bữa cơm gia đình bên bờ sông.", "highlightsVi": ["Vườn trái cây và lối đi trong làng", "Đi bộ và đạp xe", "Bữa ăn gia đình bên bờ sông"]}, {"descVi": "Cồn sông nổi tiếng với đồ thủ công từ dừa, vườn cây ăn trái và nhạc truyền thống.", "detailsVi": "Cồn Phụng là một cồn nổi tiếng ở Bến Tre, thường được ghé thăm vì các sản phẩm từ dừa và những đường đi bộ trong vườn cây. Đây cũng gắn với hình ảnh một nhân vật tôn giáo địa phương, được gọi là 'Ông Đạo Dừa'.", "highlightsVi": ["Đồ thủ công và sản phẩm từ dừa", "Vườn cây ăn trái", "Biểu diễn nhạc truyền thống"]}, {"descVi": "Xem kẹo dừa được làm thủ công ngay giữa xứ dừa Bến Tre.", "detailsVi": "Bến Tre được mệnh danh là xứ dừa, và Mỏ Cày nổi tiếng với các xưởng làm kẹo dừa. Khách có thể xem kẹo được nấu, cắt và gói, sau đó nếm thử mẫu tươi và mua quà về.", "highlightsVi": ["Kẹo được nấu, cắt và gói thủ công", "Mẫu tươi để nếm thử", "Quà từ dừa mang về"]}, {"descVi": "Khu du lịch sinh thái rừng ngập mặn, khám phá các đường thủy bằng thuyền.", "detailsVi": "Vàm Hồ là khu du lịch sinh thái thuộc huyện Ba Tri, nằm giữa sông ngòi và kênh rừng ngập mặn. Đây là lựa chọn phù hợp cho du khách muốn một điểm dừng yên tĩnh, gần thiên nhiên, tránh xa các cồn đông đúc hơn.", "highlightsVi": ["Đi thuyền qua kênh rừng ngập mặn", "Cảnh sông yên tĩnh", "Hải sản địa phương gần đó"]}, {"descVi": "Bảo tàng về lịch sử và văn hóa Bến Tre cùng đồng bằng sông Cửu Long.", "detailsVi": "Bảo tàng là nơi giới thiệu tốt về tỉnh, với các hiện vật về lịch sử địa phương, văn hóa và đời sống thường ngày ở Đồng bằng sông Cửu Long. Đây là điểm dừng ngắn hợp lý trước khi đi đến vườn cây và các cồn.", "highlightsVi": ["Trưng bày lịch sử địa phương", "Đồ vật truyền thống và ảnh cũ", "Điểm khởi đầu tốt để hiểu về tỉnh"]}, {"descVi": "Chùa Khmer nổi tiếng với đàn dơi ăn quả trú ngụ trên tán cây.", "detailsVi": "Chùa Dơi, hay chùa Mahatup, là ngôi chùa Khmer nổi tiếng với đàn dơi ăn quả trú trên các tán cây quanh chùa. Nên ghé vào lúc hoàng hôn để xem đàn dơi bay ra.", "highlightsVi": ["Đàn dơi trú trên cây", "Kiến trúc chùa Khmer", "Đẹp nhất vào lúc hoàng hôn"]}, {"descVi": "Một trong những chùa Khmer cổ nhất vùng Đồng bằng sông Cửu Long, mái vàng chạm trổ.", "detailsVi": "Chùa Kh'leang được xem là một trong những chùa Khmer cổ nhất trong vùng. Chùa nổi bật với đường mái vàng, các chi tiết chạm khắc tinh xảo và sân chùa yên tĩnh, đồng thời là nơi quan trọng với cộng đồng Khmer địa phương.", "highlightsVi": ["Đường mái vàng kiểu Khmer", "Chạm khắc tinh xảo", "Sân chùa yên tĩnh"]}, {"descVi": "Chùa nổi tiếng với tượng Phật và các công trình đắp bằng đất sét, cùng nghệ thuật gốm chi tiết.", "detailsVi": "Chùa Đất Sét, còn gọi là Bửu Sơn, nổi tiếng với nhiều tượng và công trình làm bằng đất sét. Hàng tượng Phật và bảo tháp làm nên một trong những ngôi chùa đặc sắc nhất ở Sóc Trăng.", "highlightsVi": ["Tượng Phật đắp bằng đất sét", "Bảo tháp và chi tiết trang trí", "Khuôn viên đặc sắc, dễ chụp ảnh"]}, {"descVi": "Chợ nổi sôi động nơi năm con kênh gặp nhau, đông ghe thuyền vào lúc bình minh.", "detailsVi": "Được đặt tên theo điểm năm con kênh gặp nhau, chợ nổi Ngã Năm đông nhất vào sáng sớm. Ghe thuyền chở trái cây, rau củ và hàng địa phương, và du khách có thể đi thuyền một vòng quanh ngã ba.", "highlightsVi": ["Ghe thuyền tụ họp lúc bình minh", "Trái cây và rau củ địa phương", "Đi thuyền quanh ngã ba kênh"]}];
     // ẢNH TỪNG THẺ: mỗi địa điểm có một file riêng (cùng thư mục với file HTML này). Ảnh gốc: IMG_1692.jpeg
     // 01 image/dest-01-nha-tho-duc-ba-sai-gon.jpg · 02 image/dest-02-buu-dien-trung-tam.jpg · 03 image/dest-03-cho-ben-thanh.jpg · 04 image/dest-04-dinh-doc-lap.jpg
     // 05 image/dest-05-cho-noi-cai-be.jpg · 06 image/dest-06-chua-vinh-trang.jpg · 07 image/dest-07-con-thoi-son.jpg · 08 image/dest-08-con-tan-long.jpg
@@ -338,9 +275,9 @@ const VI_DEST = [{"descVi": "Con đường đi bộ sôi động ngay trung tâm
     // 13 image/dest-13-chua-doi.jpg · 14 image/dest-14-chua-kh-leang.jpg · 15 image/dest-15-chua-dat-set.jpg · 16 image/dest-16-cho-noi-nga-nam.jpg
     const destinations = [
       { id: 1, category: 'hcmc', label: "TP.HCM", title: "Nguyen Hue Walking Street", location: "District 1, HCMC",
-        desc: "A lively pedestrian street in the heart of Saigon, where visitors stroll, enjoy street food and watch the city come alive at night.",
-        details: "Nguyen Hue Walking Street sits in the centre of District 1 and is a favourite meeting place for locals and visitors, with wide open spaces, fountains, decorative lights and many cafés around the area.",
-        highlights: ["Wide pedestrian space in central District 1", "Fountains and decorative lights at night", "Close to Notre-Dame Cathedral and the Central Post Office"],
+        desc: "The group gathers at Nguyen Hue Walking Street, in the area in front of the Statue of President Ho Chi Minh. The tour guide welcomes guests, checks the list, helps with luggage and shares the essential information before departure. Once preparations are complete, the group officially begins the journey to explore the river life of the Mekong Delta.",
+        details: "",
+        highlights: [],
         img: 'image/dest-01-pho-di-bo-nguyen-hue.jpg', gallery: [], fallback: 'from-slate-500 to-blue-800' },
       { id: 5, category: 'mytho', label: "Đồng Tháp", title: "Chợ nổi Cái Bè", location: "Cái Bè, Tiền Giang",
         desc: "A floating market on the Mekong where boats trade fruit and local produce at dawn.",
@@ -403,17 +340,13 @@ const VI_DEST = [{"descVi": "Con đường đi bộ sôi động ngay trung tâm
         highlights: ["Boats gathering at sunrise", "Local fruit and vegetables", "Boat ride around the canal junction"],
         img: 'image/dest-16-cho-noi-nga-nam.jpg', gallery: [], fallback: 'from-amber-400 to-red-600' }
     ];
-
     destinations.forEach((d, i) => Object.assign(d, VI_DEST[i]));
     const txt = (d, k) => (document.documentElement.lang === 'vi' ? d[k + 'Vi'] : d[k]);
-
     // 2. STATE
     let activeFilter = 'all';
-
     const grid = document.getElementById('grid');
     const empty = document.getElementById('empty');
     const buttons = document.querySelectorAll('.filter-btn');
-
     function cardHTML(d) {
       return `
         <article data-id="${d.id}" tabindex="0" role="button" aria-haspopup="dialog" aria-label="${d.title} – view details"
@@ -428,34 +361,27 @@ const VI_DEST = [{"descVi": "Con đường đi bộ sôi động ngay trung tâm
           </div>
         </article>`;
     }
-
     // 3. LỌC bằng filter() rồi render lại lưới (mỗi lần render, thẻ chạy lại animation fade + scale)
     function render() {
       const visible = activeFilter === 'all'
         ? destinations
         : destinations.filter(d => d.category === activeFilter);
-
       grid.innerHTML = visible.map(cardHTML).join('');
       reveal(grid.children, 0, 110, 3); // thẻ hiện dần, thẻ nằm dưới màn hình sẽ hiện khi cuộn tới
       empty.classList.toggle('hidden', visible.length > 0);
-
       buttons.forEach(btn => {
         btn.setAttribute('aria-selected', btn.dataset.filter === activeFilter);
       });
     }
-
     buttons.forEach(btn => btn.addEventListener('click', () => {
       if (btn.dataset.filter === activeFilter) return;
       activeFilter = btn.dataset.filter;
       render();
     }));
-
     render(); // mặc định: All
-
     const q = (sel) => document.querySelectorAll(sel);
     reveal(q('.banner-bg h1'), 100);
     reveal(q('#filters'), 350);
-
     // Nút back-to-top: cuộn mượt lên đầu trang
     document.getElementById('back-to-top').addEventListener('click', (e) => {
       e.preventDefault();
@@ -479,12 +405,10 @@ const VI_DEST = [{"descVi": "Con đường đi bộ sôi động ngay trung tâm
         tip._t = setTimeout(() => tip.classList.remove('show'), 500);
       });
     });
-
     // ===== MODAL chi tiết địa điểm =====
     const modal = document.getElementById('modal');
     const mClose = document.getElementById('modal-close');
     let lastFocus = null;
-
     function openModal(d) {
       window.currentDest = d;
       const media = document.getElementById('modal-media');
@@ -498,20 +422,14 @@ const VI_DEST = [{"descVi": "Con đường đi bộ sôi động ngay trung tâm
       }
       document.getElementById('modal-badge').textContent = d.label;
       document.getElementById('modal-title').textContent = d.title;
-      const photo = document.getElementById('modal-photo');
-      const photoBox = document.getElementById('modal-photo-box');
-      // Khung ảnh luôn hiện. Nếu file ảnh không tải được, khung sẽ hiện màu nền của địa điểm thay vì ẩn đi.
-      photo.className = 'block aspect-[4/3] w-full rounded-xl object-cover bg-gradient-to-br ' + d.fallback;
-      photo.onerror = () => { photo.removeAttribute('src'); };
-      photoBox.style.display = '';
-      if (d.img) { photo.src = d.img; } else { photo.removeAttribute('src'); }
-      photo.alt = d.title;
       document.querySelector('#modal-location span').textContent = d.location;
       document.getElementById('modal-desc').textContent = txt(d, 'desc');
       document.getElementById('modal-details').textContent = txt(d, 'details');
+      { const ob = document.getElementById('modal-details').closest('.info-box'); ob.style.display = txt(d, 'details') ? '' : 'none'; }
+      { const hb = document.getElementById('modal-highlights').closest('.info-box'); hb.style.display = (txt(d, 'highlights') || []).length ? '' : 'none'; }
+
       document.getElementById('modal-highlights').innerHTML = txt(d, 'highlights').map(h =>
         `<li class="flex items-start gap-2"><svg class="mt-0.5 h-4 w-4 shrink-0 text-green-400" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7"/></svg>${h}</li>`).join('');
-
       // Ảnh phụ (nếu có): thêm đường dẫn vào trường gallery: ['a.jpg', 'b.jpg', ...]
       const gal = document.getElementById('modal-gallery');
       const hasGallery = !!(d.gallery && d.gallery.length);
@@ -519,7 +437,6 @@ const VI_DEST = [{"descVi": "Con đường đi bộ sôi động ngay trung tâm
         `<img src="${src}" alt="${d.title}" loading="lazy" onerror="this.remove()" class="aspect-[4/3] w-full rounded-lg object-cover" />`).join('');
       gal.classList.toggle('hidden', !hasGallery);
       gal.classList.toggle('grid', hasGallery);
-
       lastFocus = document.activeElement;
       modal.classList.add('open');
       modal.setAttribute('aria-hidden', 'false');
@@ -532,7 +449,6 @@ const VI_DEST = [{"descVi": "Con đường đi bộ sôi động ngay trung tâm
       document.documentElement.style.overflow = '';
       if (lastFocus) lastFocus.focus({ preventScroll: true });
     }
-
     function cardFrom(target) {
       const el = target.closest('[data-id]');
       return el ? destinations.find(d => d.id === Number(el.dataset.id)) : null;
