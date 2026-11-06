@@ -178,13 +178,63 @@ html[lang="en"] #flag-en, html[lang="vi"] #flag-vi { opacity: 1; box-shadow: 0 0
       /* Navbar luôn hiển thị khi cuộn, nền xanh navy */
     header.site-nav { position: sticky; top: 0; z-index: 30; background: #0b1a33; transition: box-shadow .3s ease; }
     header.site-nav.scrolled { background: linear-gradient(to bottom, rgba(11,26,51,.85) 0%, rgba(11,26,51,.45) 70%, rgba(11,26,51,0) 100%); }
+    /* ===== Responsive: điện thoại (≤ 639px) ===== */
+    @media (max-width: 639px) {
+      html { -webkit-text-size-adjust: 100%; }
+      body { overflow-x: hidden; }
+      img, table { max-width: 100%; }
+      header.site-nav nav { padding-top: .5rem; padding-bottom: .5rem; }
+      header.site-nav img { width: 2.5rem !important; height: 2.5rem !important; }
+      header.site-nav a > span { font-size: 1rem !important; }
+      header.site-nav ul a { padding-left: .75rem !important; padding-right: .75rem !important; font-size: .9rem; }
+      .hero-bg h1 { font-size: 2.25rem !important; line-height: 1.15; }
+      .hero-bg h1 + p { font-size: .95rem; }
+      .banner-bg h1 { font-size: 1.85rem !important; }
+      .filter-btn { padding: .5rem .85rem; font-size: .85rem; min-height: 40px; }
+      #spotlight .sp-stage { height: 320px; }
+      #spotlight .sp-card { width: 170px; height: 250px; margin: -125px 0 0 -85px; --off: 105px; }
+      #spotlight .sp-info { padding: 1.25rem; }
+      #modal .panel { width: 100% !important; height: 100% !important; margin: 0 !important; border-radius: 0 !important; }
+      #modal .info-box { padding: .9rem 1rem; }
+      #modal .modal-spacer { height: 34%; min-height: 200px; }
+      .sp-arrow { height: 40px; width: 40px; }
+    }
+    /* ===== Responsive: máy tính bảng và máy tính (≥ 1024px) ===== */
+    @media (min-width: 1024px) {
+      .hero-bg h1 { font-size: 4.5rem; }
+      #spotlight .sp-stage { height: 380px; }
+    }
+    /* ===== Why Choosing Us trên điện thoại: thu gọn ảnh và tiêu đề ===== */
+    @media (max-width: 639px) {
+      #why-visit h2 { font-size: 1.9rem !important; line-height: 1.2; }
+      #why-visit article img { aspect-ratio: 16 / 10 !important; height: auto !important; }
+      #why-visit article > div { padding: 1.1rem 1.1rem 1.25rem !important; }
+      #why-visit article h3 { font-size: 1.1rem; }
+      #why-visit article p { font-size: .9rem; }
+    }
+    /* ===== Why Choosing Us trên điện thoại: 3 thẻ xếp ngang, vuốt sang trái/phải ===== */
+    @media (max-width: 639px) {
+      #why-visit .grid { display: flex !important; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1rem; padding: .25rem .25rem 1rem; -webkit-overflow-scrolling: touch; }
+      #why-visit .grid > article { flex: 0 0 80%; max-width: 80%; scroll-snap-align: center; }
+      #why-visit .grid::-webkit-scrollbar { height: 4px; }
+      #why-visit .grid::-webkit-scrollbar-thumb { background: rgba(15,23,42,.25); border-radius: 9999px; }
+    }
+    /* ===== Trang tiếng Việt: menu không xuống dòng, khoảng dòng tiêu đề và đoạn văn dễ đọc hơn ===== */
+    header.site-nav a { white-space: nowrap; }
+    header.site-nav nav > ul { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+    header.site-nav nav > ul::-webkit-scrollbar { display: none; }
+    html[lang="vi"] h1, html[lang="vi"] h2, html[lang="vi"] h3, html[lang="vi"] h4 { line-height: 1.3 !important; }
+    html[lang="vi"] p, html[lang="vi"] li, html[lang="vi"] td { line-height: 1.65; }
+    @media (max-width: 639px) {
+      html[lang="vi"] header.site-nav ul a { font-size: .82rem; padding-left: .6rem !important; padding-right: .6rem !important; }
+    }
 </style>
 </head>
 <body class="font-sans bg-slate-900 text-white antialiased">
 <!-- NAVBAR -->
 <header class="site-nav sticky top-0 z-30 w-full bg-[#0b1a33] text-white">
 <nav class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-y-2 px-4 py-3 sm:px-6 lg:px-8">
-<a aria-label="Home" class="flex shrink-0 items-center gap-2.5" href="homepage_vi.html" title="Trang chủ"><img alt="Mekong Travel logo" class="h-9 w-9 object-contain" loading="eager" src="image/logo-mekong-travel.png"/><span class="whitespace-nowrap text-lg font-bold tracking-wide text-white sm:text-xl">Mekong Travel</span></a>
+<a aria-label="Home" class="shrink-0 flex items-center gap-3" href="homepage_vi.html" title="Trang chủ"><img alt="Mekong Travel logo" class="h-14 w-14 object-contain" loading="eager" src="image/logo-mekong-travel.png"/><span class="whitespace-nowrap text-lg font-extrabold tracking-wide text-white">Mekong Travel</span></a>
 <ul class="order-last flex w-full items-center justify-center gap-1 rounded-full border border-white/25 bg-white/10 p-2 text-sm font-medium md:order-none md:w-auto md:gap-2 md:p-2.5 md:justify-center md:text-[15px]">
 <li><a aria-current="page" class="rounded-full border border-white/20 bg-white/15 px-5 py-2 text-white" href="homepage_vi.html">Trang chủ</a></li>
 <li><a class="rounded-full px-5 py-2 text-white/85 transition hover:bg-white/10 hover:text-white" href="information_vi.html">Thông tin</a></li>
@@ -317,7 +367,7 @@ Dấu Chân Miền Sông Nước
 <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr] lg:gap-12">
 <div>
 <a aria-label="Mekong Travels" class="inline-flex flex-col items-start gap-2" href="homepage_vi.html" title="Mekong Travels">
-<img alt="Mekong Travel logo" class="h-20 w-20 object-contain" loading="eager" src="image/logo-mekong-travel.png"/>
+<img alt="Mekong Travel logo" class="h-24 w-24 object-contain" loading="eager" src="image/logo-mekong-travel.png"/>
 <span class="bg-gradient-to-r from-sky-400 via-green-400 to-orange-400 bg-clip-text text-lg font-extrabold uppercase tracking-wide text-transparent">Mekong Travels</span>
 <span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-300">Follow the Flow – Make Memories as You Go.</span>
 </a>
@@ -340,10 +390,6 @@ Dấu Chân Miền Sông Nước
 <li class="relative flex items-center gap-3"><svg aria-hidden="true" class="h-4 w-4 shrink-0 text-sky-400" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" stroke-linejoin="round"></path></svg><button class="break-all text-left transition hover:text-white" data-copy="0763254866" title="Bấm để sao chép" type="button">0763254866</button><span aria-live="polite" class="copy-tip pointer-events-none absolute -top-8 left-7 flex items-center gap-1 rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-green-600 shadow-lg" role="status">Đã sao chép</span></li>
 <li class="relative flex items-center gap-3"><svg aria-hidden="true" class="h-4 w-4 shrink-0 text-sky-400" fill="none" stroke="currentColor" stroke-width="1.8" viewbox="0 0 24 24"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z" stroke-linejoin="round"></path><circle cx="12" cy="9" r="2.5"></circle></svg><button class="text-left transition hover:text-white" data-copy="Số 131 Cô Bắc, Phường Cầu Ông Lãnh (trước đây thuộc phường Cô Giang), Quận 1, TP. Hồ Chí Minh" data-title-en="Click to copy" data-title-vi="Bấm để sao chép" title="Bấm để sao chép" type="button">Số 131 Cô Bắc, Phường Cầu Ông Lãnh (trước đây thuộc phường Cô Giang), Quận 1, TP. Hồ Chí Minh</button><span aria-live="polite" class="copy-tip pointer-events-none absolute -top-8 left-7 flex items-center gap-1 rounded-md bg-white px-2.5 py-1 text-xs font-semibold text-green-600 shadow-lg" role="status"><svg aria-hidden="true" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24"><path d="m5 13 4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path></svg>Đã sao chép</span></li>
 </ul>
-<div class="mt-5 flex gap-3">
-<a aria-label="Facebook" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:bg-white/15 hover:text-white" href="#"><svg aria-hidden="true" class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8z"></path></svg></a>
-<a aria-label="GitHub" class="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 transition hover:bg-white/15 hover:text-white" href="#"><svg aria-hidden="true" class="h-4 w-4" fill="currentColor" viewbox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6a4.7 4.7 0 0 1 1.2-3.2c-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2a4.7 4.7 0 0 1 1.2 3.2c0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"></path></svg></a>
-</div>
 </div>
 </div>
 </div>
