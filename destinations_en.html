@@ -127,6 +127,32 @@ html[lang="en"] #flag-en, html[lang="vi"] #flag-vi { opacity: 1; box-shadow: 0 0
     /* Tránh nháy trắng khi cuộn nhanh: giữ banner và thanh navbar trên lớp riêng, bỏ backdrop-blur trên thanh lọc */
     .banner-bg { transform: translateZ(0); backface-visibility: hidden; }
     header.site-nav { transform: translateZ(0); backface-visibility: hidden; }
+    /* ===== Responsive: điện thoại (≤ 639px) ===== */
+    @media (max-width: 639px) {
+      html { -webkit-text-size-adjust: 100%; }
+      body { overflow-x: hidden; }
+      img, table { max-width: 100%; }
+      header.site-nav nav { padding-top: .5rem; padding-bottom: .5rem; }
+      header.site-nav img { width: 2.5rem !important; height: 2.5rem !important; }
+      header.site-nav a > span { font-size: 1rem !important; }
+      header.site-nav ul a { padding-left: .75rem !important; padding-right: .75rem !important; font-size: .9rem; }
+      .hero-bg h1 { font-size: 2.25rem !important; line-height: 1.15; }
+      .hero-bg h1 + p { font-size: .95rem; }
+      .banner-bg h1 { font-size: 1.85rem !important; }
+      .filter-btn { padding: .5rem .85rem; font-size: .85rem; min-height: 40px; }
+      #spotlight .sp-stage { height: 320px; }
+      #spotlight .sp-card { width: 170px; height: 250px; margin: -125px 0 0 -85px; --off: 105px; }
+      #spotlight .sp-info { padding: 1.25rem; }
+      #modal .panel { width: 100% !important; height: 100% !important; margin: 0 !important; border-radius: 0 !important; }
+      #modal .info-box { padding: .9rem 1rem; }
+      #modal .modal-spacer { height: 34%; min-height: 200px; }
+      .sp-arrow { height: 40px; width: 40px; }
+    }
+    /* ===== Responsive: máy tính bảng và máy tính (≥ 1024px) ===== */
+    @media (min-width: 1024px) {
+      .hero-bg h1 { font-size: 4.5rem; }
+      #spotlight .sp-stage { height: 380px; }
+    }
 </style>
 <!-- Tải trước ảnh banner: image/banner-destinations_en.jpg -->
 <link as="image" href="image/banner-destinations_en.jpg" rel="preload"/>
